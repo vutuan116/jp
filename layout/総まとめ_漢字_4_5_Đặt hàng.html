@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>JpT</title>
+    <link href="../css/sb-admin-2.css" rel="stylesheet">
+    <link href="../css/custom.css" rel="stylesheet">
+    <link rel="icon" href="../img/icon.ico">
+</head>
+
+<body class="bg-gradient-dark">
+    <div class="container">
+        <div class="col-lg-12">
+            <div class="text-center mt-3" id="ontop">
+                <h1 class="h4 text-white mb-3" style="font-size: 32px">JpT Home</h1>
+            </div>
+        </div>
+
+        <div class="row justify-content-md-center" id="content">
+        </div>
+
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-4 m-4">
+                <a class="btn btn-block text-white btn_bg_blue" href="../index.html">Start Page</a>
+            </div>
+			<div class="col col-lg-4 m-4">
+                <a class="btn btn-block text-white btn_bg_blue" onclick="randomCard()">Sắp xếp lại</a>
+            </div>
+        </div>
+    </div>
+    <script src="../vendor/jquery/jquery.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.js"></script>
+    <script src="../js/sb-admin-2.js"></script>
+    <script type="text/javascript">
+        var indexArr = [];
+
+        function randomArr(arr) {
+            var copyArr = arr.slice();
+            var result = [];
+            var i = 0;
+            while (copyArr.length > 0) {
+                var index = Math.floor(Math.random() * copyArr.length);
+                result[i] = copyArr[index];
+                copyArr.splice(index, 1);
+                i++;
+            }
+            return result;
+        }
+
+        function convertHtml(arr) {
+            var html = "";
+            for (i = 0; i < arr.length; i++) {
+                html = html + "<div class=\"col-lg-5 m-3 bg-white corner_radius\"><div class=\"d-flex align-items-center justify-content-center board\" onclick=\"clickBtn(" + i + ")\"><div class=\"card\" id=\"card_" + i + "\"><div class=\"front\"><div class=\"p-2 bd-highlight\"><h1 class=\"fs_kanji\">" + kanjiArr[arr[i]] + "</h1></div></div><div class=\"back\"><div class=\"p-2 bd-highlight\"><span class=\"bs_hanviet\">" + hanvietArr[i] + "</span><span class=\"bs_kanji\">" + kanjiArr[arr[i]] + "</span><span class=\"bs_hira\">" + hiraArr[arr[i]] + "</span><span class=\"bs_mean\">" + meanArr[arr[i]] + "</span></div></div></div></div></div>";
+            }
+            return html;
+        }
+
+        function clickBtn(id) {
+            $('#card_' + id).toggleClass('flipped');
+        }
+
+
+
+        function randomCard() {
+            var arr = randomArr(indexArr);
+            var html = convertHtml(arr);
+            $("#content").empty();
+            $("#content").html(html);
+
+            $('html, body').stop().animate({
+                scrollTop: ($("#ontop").offset().top)
+            }, 800, 'easeInOutExpo');
+        }
+
+        $(document).ready(function() {
+            for (i = 0; i < kanjiArr.length; i++) {
+                indexArr[i] = i;
+            }
+            var html = convertHtml(indexArr);
+            $("#content").empty();
+            $("#content").html(html);
+        });
+        //Data
+        var kanjiArr = ["届ける","届く","自宅","お宅","宅配","配達","配送料","心配","配る","希望","失望","望む","入荷","出荷","荷物","手荷物","交換","代金引換","乗り換え","金額","半額"];
+var hiraArr = ["とどける","とどく","じたく","おたく","たくはい","はいたつ","はいそうりょう","しんぱい","くばる","きぼう","しつぼう","のぞむ","にゅうか","しゅっか","にもつ","てにもつ","こうかん","だいきんひきかえ","のりかえ","きんがく","はんがく"];
+var hanvietArr = ["GIỚI","GIỚI","TỰ TRẠCH","TRẠCH","TRẠCH PHỐI","PHỐI ĐẠT","PHỐI TỐNG LIỆU","TÂM PHỐI","PHỐI","HI VỌNG","THẤT VỌNG","VỌNG","NHẬP HÀ","XUẤT HÀ","HÀ VẬT","THỦ HÀ VẬT","GIAO HOÁN","ĐẠI KIM DẪN HOÁN","THỪA HOÁN","KIM NGẠCH","BÁN NGẠCH"];
+var meanArr = ["gửi đến (tha v)","đến nơi (tự v)","nhà của ai đó, nhà","căn nhà (trang trọng)","đưa đến nhà","chuyển phát, giao hàng","phí chuyển phát","lo lắng","phân phối, phân chia","hi vọng","thất vọng","mong muốn, hi vọng","nhập hàng","xuất hàng","hàng hóa","hàng xách tay","trao đổi","giao hàng nhận tiền mặt","đổi chuyến tàu","số tiền","nửa giá"];
+    </script>
+</body>
+
+</html>
+
