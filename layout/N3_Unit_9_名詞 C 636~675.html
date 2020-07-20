@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>JpT</title>
+    <link href="../css/sb-admin-2.css" rel="stylesheet">
+    <link href="../css/customKotoba.css" rel="stylesheet">
+    <link rel="icon" href="../img/icon.ico">
+</head>
+
+<body class="bg-gradient-dark">
+    <div class="container">
+        <div class="col-lg-12">
+            <div class="text-center mt-3" id="ontop">
+                <h1 class="h4 text-white mb-3" style="font-size: 32px">JpT Home</h1>
+            </div>
+        </div>
+
+        <div class="row justify-content-md-center" id="content">
+        </div>
+
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-4 m-4">
+                <a class="btn btn-block text-white btn_bg_blue" href="../index.html">Start Page</a>
+            </div>
+            <div class="col col-lg-4 m-4">
+                <a class="btn btn-block text-white btn_bg_blue" onclick="randomCard()">Sắp xếp lại</a>
+            </div>
+        </div>
+    </div>
+    <script src="../vendor/jquery/jquery.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.js"></script>
+    <script src="../js/sb-admin-2.js"></script>
+    <script type="text/javascript">
+        var indexArr = [];
+
+        function randomArr(arr) {
+            var copyArr = arr.slice();
+            var result = [];
+            var i = 0;
+            while (copyArr.length > 0) {
+                var index = Math.floor(Math.random() * copyArr.length);
+                result[i] = copyArr[index];
+                copyArr.splice(index, 1);
+                i++;
+            }
+            return result;
+        }
+
+        function convertHtml(arr) {
+            var html = "";
+            for (i = 0; i < arr.length; i++) {
+                html = html + "<div class=\"col-lg-5 m-3 bg-white corner_radius\"><div class=\"d-flex align-items-center justify-content-center board\" onclick=\"clickBtn(" + arr[i] + ")\"><div class=\"card\" id=\"card_" + arr[i] + "\"><div class=\"front\"><div class=\"p-2 bd-highlight\"><span class=\"fs_kanji\">" + kanjiArr[arr[i]] + "</span><span class=\"fs_hira\">" + hiraArr[arr[i]] + "</span></div></div><div class=\"back\"><div class=\"p-2 bd-highlight\"><span class=\"bs_kanji\">" + kanjiArr[arr[i]] + "</span><span class=\"bs_hira\">" + hiraArr[arr[i]] + "</span><span class=\"bs_mean\">" + meanArr[arr[i]] + "</span></div></div></div></div></div>";
+            }
+            return html;
+        }
+
+        function clickBtn(id) {
+            $('#card_' + id).toggleClass('flipped');
+        }
+
+
+
+        function randomCard() {
+            var arr = randomArr(indexArr);
+            var html = convertHtml(arr);
+            $("#content").empty();
+            $("#content").html(html);
+
+            $('html, body').stop().animate({
+                scrollTop: ($("#ontop").offset().top)
+            }, 800, 'easeInOutExpo');
+        }
+
+        $(document).ready(function() {
+            for (i = 0; i < kanjiArr.length; i++) {
+                indexArr[i] = i;
+            }
+            var html = convertHtml(indexArr);
+            $("#content").empty();
+            $("#content").html(html);
+        });
+        //Data 
+        var kanjiArr = ["読書","演奏","芸術","検査","血液","治療","症状","予防","栄養","手術","死亡","命","一生","誤解","後悔","訳","態度","癖","礼儀","文句","表情","表面","禁煙","禁止","完成","課題","例外","基本","記録","状態","出来事","場面","機会","距離","提案","やり取り","知識","実力","手段","代表"];
+var hiraArr = ["どくしょ","えんそう","げいじゅつ","けんさ","けつえき","ちりょう","しょうじょう","よぼう","えいよう","しゅじゅつ","しぼう","いのち","いっしょう","ごかい","こうかい","わけ","たいど","くせ","れいぎ","もんく","ひょうじょう","ひょうめん","きんえん","きんし","かんせい","かだい","れいがい","きほん","きろく","じょうたい","できごと","ばめん","きかい","きょり","ていあん","やりとり","ちしき","じつりょく","しゅだん","だいひょう"];
+var meanArr = ["đọc sách","biểu diễn, diễn tấu","nghệ thuật","điều tra, khảo sát","máu","điều trị, chữa bệnh","triệu chứng","dự phòng, phòng tránh","dinh dưỡng","thủ thật, phẫu thuật","tử vong, cái chết","số mệnh, mạng sống","cả đời, mãi mãi","hiểu nhầm, hiểu lầm","hối hận, hối tiếc","lý do, ý nghĩa","thái độ","thói quen","lễ nghi, lễ nghĩa","phàn nàn, kêu ca","sự thể hiện","diện mạo, bề mặt, bề ngoài","cấm hút thuốc","cấm","hoàn thành","chủ đề, vấn đề","ngoại lệ, ngoại trừ","cơ bản, cở sở","kỉ lục, ghi âm, ghi chép","tình trạng, hiện trạng, điều kiện","sự kiện (đã xảy ra)","tình huống, bối cảnh","cơ hội","khoảng cách","đề án, đề xuất","giao dịch, trao đổi","kiến thức, hiểu biết","thực lực, khả năng","phương tiện, cách thức","đại biểu, tiêu biểu"];
+    </script>
+</body>
+
+</html>
+<!-- 
+<div class="col-lg-5 m-3 bg-white corner_radius">
+    <div class="d-flex align-items-center justify-content-center board" onclick="clickBtn(0)">
+        <div class="card" id="card_0">
+            <div class="front">
+                <div class="p-2 bd-highlight">
+                    <span class="fs_kanji">抱く</span>
+                    <span class="fs_hira">だく</span>
+                </div>
+            </div>
+            <div class="back">
+                <div class="p-2 bd-highlight">
+                    <span class="bs_kanji">抱く</span>
+                    <span class="bs_hira">だく</span>
+                    <span class="bs_mean">ôm ấp, bế</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+

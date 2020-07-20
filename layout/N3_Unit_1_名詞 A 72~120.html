@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>JpT</title>
+    <link href="../css/sb-admin-2.css" rel="stylesheet">
+    <link href="../css/customKotoba.css" rel="stylesheet">
+    <link rel="icon" href="../img/icon.ico">
+</head>
+
+<body class="bg-gradient-dark">
+    <div class="container">
+        <div class="col-lg-12">
+            <div class="text-center mt-3" id="ontop">
+                <h1 class="h4 text-white mb-3" style="font-size: 32px">JpT Home</h1>
+            </div>
+        </div>
+
+        <div class="row justify-content-md-center" id="content">
+        </div>
+
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-4 m-4">
+                <a class="btn btn-block text-white btn_bg_blue" href="../index.html">Start Page</a>
+            </div>
+            <div class="col col-lg-4 m-4">
+                <a class="btn btn-block text-white btn_bg_blue" onclick="randomCard()">Sắp xếp lại</a>
+            </div>
+        </div>
+    </div>
+    <script src="../vendor/jquery/jquery.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.js"></script>
+    <script src="../js/sb-admin-2.js"></script>
+    <script type="text/javascript">
+        var indexArr = [];
+
+        function randomArr(arr) {
+            var copyArr = arr.slice();
+            var result = [];
+            var i = 0;
+            while (copyArr.length > 0) {
+                var index = Math.floor(Math.random() * copyArr.length);
+                result[i] = copyArr[index];
+                copyArr.splice(index, 1);
+                i++;
+            }
+            return result;
+        }
+
+        function convertHtml(arr) {
+            var html = "";
+            for (i = 0; i < arr.length; i++) {
+                html = html + "<div class=\"col-lg-5 m-3 bg-white corner_radius\"><div class=\"d-flex align-items-center justify-content-center board\" onclick=\"clickBtn(" + arr[i] + ")\"><div class=\"card\" id=\"card_" + arr[i] + "\"><div class=\"front\"><div class=\"p-2 bd-highlight\"><span class=\"fs_kanji\">" + kanjiArr[arr[i]] + "</span><span class=\"fs_hira\">" + hiraArr[arr[i]] + "</span></div></div><div class=\"back\"><div class=\"p-2 bd-highlight\"><span class=\"bs_kanji\">" + kanjiArr[arr[i]] + "</span><span class=\"bs_hira\">" + hiraArr[arr[i]] + "</span><span class=\"bs_mean\">" + meanArr[arr[i]] + "</span></div></div></div></div></div>";
+            }
+            return html;
+        }
+
+        function clickBtn(id) {
+            $('#card_' + id).toggleClass('flipped');
+        }
+
+
+
+        function randomCard() {
+            var arr = randomArr(indexArr);
+            var html = convertHtml(arr);
+            $("#content").empty();
+            $("#content").html(html);
+
+            $('html, body').stop().animate({
+                scrollTop: ($("#ontop").offset().top)
+            }, 800, 'easeInOutExpo');
+        }
+
+        $(document).ready(function() {
+            for (i = 0; i < kanjiArr.length; i++) {
+                indexArr[i] = i;
+            }
+            var html = convertHtml(indexArr);
+            $("#content").empty();
+            $("#content").html(html);
+        });
+        //Data 
+        var kanjiArr = ["太陽","地球","温度","湿度","湿気","梅雨","かび","暖房","皮","缶","画面","番組","記事","近所","警察","犯人","小銭","ごちそう","作者","作品","制服","洗剤","底","地下","寺","道路","坂","煙","灰","判","名刺","免許","多く","前半","後半","最高","最低","最初","最後","自動","種類","性格","性質","順番","番","方法","製品","値上がり","生"];
+var hiraArr = ["たいよう","ちきゅう","おんど","しつど","しっけ","つゆ","","だんぼう","かわ","かん","がめん","ばんぐみ","きじ","きんじょ","けいさつ","はんにん","こぜに","","さくしゃ","さくひん","せいふく","せんざい","そこ","ちか","てら","どうろ","さか","けむり","はい","はん","めいし","めんきょ","おおく","ぜんはん","こうはん","さいこう","さいてい","さいしょ","さいご","じどう","しゅるい","せいかく","せいしつ","じゅんばん","ばん","ほうほう","せいひん","ねあがり","なま"];
+var meanArr = ["mặt trời, thái dương","trái đất","nhiệt độ","độ ẩm","hơi ẩm","mùa mưa","nấm, mốc","lò sưởi","da, bì, vỏ ngoài","hộp, lon","màn hình, màn ảnh","chương trình tivi, kênh","kí sự, phóng sự","vùng lân cận, hàng xóm","cảnh sát, thám tử","thủ phạm, hung thủ","tiền lẻ","món ăn ngon","tác giả","tác phẩm","đồng phục","chât tẩy rủa, bột xà phòng, nước rửa","đáy, đế, nền tảng, móng","dưới mặt đất, ngầm","chùa","con đường, tuyến phố","dốc, con dốc","khói","tàn, tro","con dấu","danh thiếp","giấy phép, sự cho phép","nhiều","nửa đầu, hiệp một","nửa sau, hiệp hai","cao nhất, tốt nhất","tồi tệ nhất, thấp nhất, kém nhất","từ đầu, đầu tiên, lúc đầu","cuối cùng","tư động","chủng loại, kiểu","tính cách","tính chất","thứ tự","số thứ tự, lượt","phương pháp, cách","sản phẩm","sự tăng giá, lên giá","tươi, sống"];
+    </script>
+</body>
+
+</html>
+<!-- 
+<div class="col-lg-5 m-3 bg-white corner_radius">
+    <div class="d-flex align-items-center justify-content-center board" onclick="clickBtn(0)">
+        <div class="card" id="card_0">
+            <div class="front">
+                <div class="p-2 bd-highlight">
+                    <span class="fs_kanji">抱く</span>
+                    <span class="fs_hira">だく</span>
+                </div>
+            </div>
+            <div class="back">
+                <div class="p-2 bd-highlight">
+                    <span class="bs_kanji">抱く</span>
+                    <span class="bs_hira">だく</span>
+                    <span class="bs_mean">ôm ấp, bế</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+
