@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>JpT</title>
+    <link href="../css/sb-admin-2.css" rel="stylesheet">
+    <link href="../css/customKotoba.css" rel="stylesheet">
+    <link rel="icon" href="../img/icon.ico">
+</head>
+
+<body class="bg-gradient-dark">
+    <div class="container">
+        <div class="col-lg-12">
+            <div class="text-center mt-3" id="ontop">
+                <h1 class="h4 text-white mb-3" style="font-size: 32px">JpT Home</h1>
+            </div>
+        </div>
+
+        <div class="row justify-content-md-center" id="content">
+        </div>
+
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-4 m-4">
+                <a class="btn btn-block text-white btn_bg_blue" href="../index.html">Start Page</a>
+            </div>
+            <div class="col col-lg-4 m-4">
+                <a class="btn btn-block text-white btn_bg_blue" onclick="randomCard()">Sắp xếp lại</a>
+            </div>
+        </div>
+    </div>
+    <script src="../vendor/jquery/jquery.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.js"></script>
+    <script src="../js/sb-admin-2.js"></script>
+    <script type="text/javascript">
+        var indexArr = [];
+
+        function randomArr(arr) {
+            var copyArr = arr.slice();
+            var result = [];
+            var i = 0;
+            while (copyArr.length > 0) {
+                var index = Math.floor(Math.random() * copyArr.length);
+                result[i] = copyArr[index];
+                copyArr.splice(index, 1);
+                i++;
+            }
+            return result;
+        }
+
+        function convertHtml(arr) {
+            var html = "";
+            for (i = 0; i < arr.length; i++) {
+                html = html + "<div class=\"col-lg-5 m-3 bg-white corner_radius\"><div class=\"d-flex align-items-center justify-content-center board\" onclick=\"clickBtn(" + arr[i] + ")\"><div class=\"card\" id=\"card_" + arr[i] + "\"><div class=\"front\"><div class=\"p-2 bd-highlight\"><span class=\"fs_kanji\">" + kanjiArr[arr[i]] + "</span><span class=\"fs_hira\">" + hiraArr[arr[i]] + "</span></div></div><div class=\"back\"><div class=\"p-2 bd-highlight\"><span class=\"bs_kanji\">" + kanjiArr[arr[i]] + "</span><span class=\"bs_hira\">" + hiraArr[arr[i]] + "</span><span class=\"bs_mean\">" + meanArr[arr[i]] + "</span></div></div></div></div></div>";
+            }
+            return html;
+        }
+
+        function clickBtn(id) {
+            $('#card_' + id).toggleClass('flipped');
+        }
+
+
+
+        function randomCard() {
+            var arr = randomArr(indexArr);
+            var html = convertHtml(arr);
+            $("#content").empty();
+            $("#content").html(html);
+
+            $('html, body').stop().animate({
+                scrollTop: ($("#ontop").offset().top)
+            }, 800, 'easeInOutExpo');
+        }
+
+        $(document).ready(function() {
+            for (i = 0; i < kanjiArr.length; i++) {
+                indexArr[i] = i;
+            }
+            var html = convertHtml(indexArr);
+            $("#content").empty();
+            $("#content").html(html);
+        });
+        //Data 
+        var kanjiArr = ["飾り","遊び","集まり","教え","踊り","思い","考え","片づけ","手伝い","働き","決まり","騒ぎ","知らせ","頼み","疲れ","違い","始め","続き","暮れ","行き","帰り","急ぎ","遅れ","貸し","借り","勝ち","負け","迎え","始まり","終わり","戻り","別れ","喜び","楽しみ","笑い","驚き","怒り","悲しみ"];
+var hiraArr = ["かざり","あそび","あつまり","おしえ","おどり","おもい","かんがえ","かたづけ","てつだい","はたらき","きまり","さわぎ","しらせ","たのみ","つかれ","ちがい","はじめ","つづき","くれ","いき","かえり","いそぎ","おくれ","かし","かり","かち","まけ","むかえ","はじまり","おわり","もどり","わかれ","よろこび","たのしみ","わらい","おどろき","いかり","かなしみ"];
+var meanArr = ["đồ trang trí, vật trang trí","trò chơi, chơi","sự tập hợp, tập trung","việc dạy dỗ","điệu nhảy, vũ điệu, việc nhảy múa","suy nghĩ","suy nghĩ","việc dọn dẹp, thu xếp, sắp xếp, bố trí","sự giúp đỡ","chức năng, hoạt động","quy định, quy tắc","sự ồn ào, vụ náo động","thông báo, tin tức","việc nhờ vả","sự mệt mỏi","sự khác nhau","sự mở đâu, bắt đầu","sự nối tiếp, duy trì","cuối cùng, sự kết thúc","việc đi lại","việc trở về, quay về","sự vội vã, gấp gáp","sự muộn, chậm","cho vay, khoản cho vay","việc mượn, vay, khoan vay","sự thắng, chiến thắng","thua, sự thật bại","sự hoanh nghênh, đón","sự mở đàu","kết thúc","sự quay lại","sự chia cắt, chia tay","sự vui mừng, niềm vui","niềm vui","tiếng cười","ngạc nhiên","sự tức giận, phẫn nộ","nỗi buồn"];
+    </script>
+</body>
+
+</html>
+<!-- 
+<div class="col-lg-5 m-3 bg-white corner_radius">
+    <div class="d-flex align-items-center justify-content-center board" onclick="clickBtn(0)">
+        <div class="card" id="card_0">
+            <div class="front">
+                <div class="p-2 bd-highlight">
+                    <span class="fs_kanji">抱く</span>
+                    <span class="fs_hira">だく</span>
+                </div>
+            </div>
+            <div class="back">
+                <div class="p-2 bd-highlight">
+                    <span class="bs_kanji">抱く</span>
+                    <span class="bs_hira">だく</span>
+                    <span class="bs_mean">ôm ấp, bế</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+

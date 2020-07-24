@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>JpT</title>
+    <link href="../css/sb-admin-2.css" rel="stylesheet">
+    <link href="../css/customKanji.css" rel="stylesheet">
+    <link rel="icon" href="../img/icon.ico">
+</head>
+
+<body class="bg-gradient-dark">
+    <div class="container">
+        <div class="col-lg-12">
+            <div class="text-center mt-3" id="ontop">
+                <h1 class="h4 text-white mb-3" style="font-size: 32px">JpT Home</h1>
+            </div>
+        </div>
+
+        <div class="row justify-content-md-center" id="content">
+        </div>
+
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-4 m-4">
+                <a class="btn btn-block text-white btn_bg_blue" href="../index.html">Start Page</a>
+            </div>
+			<div class="col col-lg-4 m-4">
+                <a class="btn btn-block text-white btn_bg_blue" onclick="randomCard()">Sắp xếp lại</a>
+            </div>
+        </div>
+    </div>
+    <script src="../vendor/jquery/jquery.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.js"></script>
+    <script src="../js/sb-admin-2.js"></script>
+    <script type="text/javascript">
+        var indexArr = [];
+
+        function randomArr(arr) {
+            var copyArr = arr.slice();
+            var result = [];
+            var i = 0;
+            while (copyArr.length > 0) {
+                var index = Math.floor(Math.random() * copyArr.length);
+                result[i] = copyArr[index];
+                copyArr.splice(index, 1);
+                i++;
+            }
+            return result;
+        }
+
+        function convertHtml(arr) {
+            var html = "";
+            for (i = 0; i < arr.length; i++) {
+                html = html + "<div class=\"col-lg-5 m-3 bg-white corner_radius\"><div class=\"d-flex align-items-center justify-content-center board\" onclick=\"clickBtn(" + i + ")\"><div class=\"card\" id=\"card_" + i + "\"><div class=\"front\"><div class=\"p-2 bd-highlight\"><h1 class=\"fs_kanji\">" + kanjiArr[arr[i]] + "</h1></div></div><div class=\"back\"><div class=\"p-2 bd-highlight\"><span class=\"bs_hanviet\">" + hanvietArr[i] + "</span><span class=\"bs_kanji\">" + kanjiArr[arr[i]] + "</span><span class=\"bs_hira\">" + hiraArr[arr[i]] + "</span><span class=\"bs_mean\">" + meanArr[arr[i]] + "</span></div></div></div></div></div>";
+            }
+            return html;
+        }
+
+        function clickBtn(id) {
+            $('#card_' + id).toggleClass('flipped');
+        }
+
+
+
+        function randomCard() {
+            var arr = randomArr(indexArr);
+            var html = convertHtml(arr);
+            $("#content").empty();
+            $("#content").html(html);
+
+            $('html, body').stop().animate({
+                scrollTop: ($("#ontop").offset().top)
+            }, 800, 'easeInOutExpo');
+        }
+
+        $(document).ready(function() {
+            for (i = 0; i < kanjiArr.length; i++) {
+                indexArr[i] = i;
+            }
+            var html = convertHtml(indexArr);
+            $("#content").empty();
+            $("#content").html(html);
+        });
+        //Data
+        var kanjiArr = ["調子","強調","調べる","調査","移動","移る","移す","困難","難問","難しい","簡単","単語","単位","感じる","感動","感想","予想"];
+var hiraArr = ["ちょうし","きょうちょう","しらべる","ちょうさ","いどう","うつる","うつす","こんなん","なんもん","むずかしい","かんたん","たんご","たんい","かんじる","かんどう","かんそう","よそう"];
+var hanvietArr = ["ĐIỀU TỬ","CƯỜNG ĐIỀU","ĐIỀU","ĐIỀU TRA","DI ĐỘNG","DI","DI","KHỐN NAN","NAN VẤN","NAN","GIẢN ĐƠN","ĐƠN NGỮ","ĐƠN VỊ","CẢM","CẢM ĐỘNG","CẢM TƯỞNG","DỰ TƯỞNG"];
+var meanArr = ["tình trạng","nhấn mạnh, cường điệu","điều tra","sự điều tra","di chuyển, chuyển động","di chuyển (tự v)","di chuyển (tha v)","khó khăn, khốn khổ","vấn đề khó khăn","khó","đơn giản","từ vựng","đơn vị, tín chỉ","cảm giác, cảm nhận","cảm động","cảm tưởng","dự đoán"];
+    </script>
+</body>
+
+</html>
+

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>JpT</title>
+    <link href="../css/sb-admin-2.css" rel="stylesheet">
+    <link href="../css/customKotoba.css" rel="stylesheet">
+    <link rel="icon" href="../img/icon.ico">
+</head>
+
+<body class="bg-gradient-dark">
+    <div class="container">
+        <div class="col-lg-12">
+            <div class="text-center mt-3" id="ontop">
+                <h1 class="h4 text-white mb-3" style="font-size: 32px">JpT Home</h1>
+            </div>
+        </div>
+
+        <div class="row justify-content-md-center" id="content">
+        </div>
+
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-4 m-4">
+                <a class="btn btn-block text-white btn_bg_blue" href="../index.html">Start Page</a>
+            </div>
+            <div class="col col-lg-4 m-4">
+                <a class="btn btn-block text-white btn_bg_blue" onclick="randomCard()">Sắp xếp lại</a>
+            </div>
+        </div>
+    </div>
+    <script src="../vendor/jquery/jquery.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.js"></script>
+    <script src="../js/sb-admin-2.js"></script>
+    <script type="text/javascript">
+        var indexArr = [];
+
+        function randomArr(arr) {
+            var copyArr = arr.slice();
+            var result = [];
+            var i = 0;
+            while (copyArr.length > 0) {
+                var index = Math.floor(Math.random() * copyArr.length);
+                result[i] = copyArr[index];
+                copyArr.splice(index, 1);
+                i++;
+            }
+            return result;
+        }
+
+        function convertHtml(arr) {
+            var html = "";
+            for (i = 0; i < arr.length; i++) {
+                html = html + "<div class=\"col-lg-5 m-3 bg-white corner_radius\"><div class=\"d-flex align-items-center justify-content-center board\" onclick=\"clickBtn(" + arr[i] + ")\"><div class=\"card\" id=\"card_" + arr[i] + "\"><div class=\"front\"><div class=\"p-2 bd-highlight\"><span class=\"fs_kanji\">" + kanjiArr[arr[i]] + "</span><span class=\"fs_hira\">" + hiraArr[arr[i]] + "</span></div></div><div class=\"back\"><div class=\"p-2 bd-highlight\"><span class=\"bs_kanji\">" + kanjiArr[arr[i]] + "</span><span class=\"bs_hira\">" + hiraArr[arr[i]] + "</span><span class=\"bs_mean\">" + meanArr[arr[i]] + "</span></div></div></div></div></div>";
+            }
+            return html;
+        }
+
+        function clickBtn(id) {
+            $('#card_' + id).toggleClass('flipped');
+        }
+
+
+
+        function randomCard() {
+            var arr = randomArr(indexArr);
+            var html = convertHtml(arr);
+            $("#content").empty();
+            $("#content").html(html);
+
+            $('html, body').stop().animate({
+                scrollTop: ($("#ontop").offset().top)
+            }, 800, 'easeInOutExpo');
+        }
+
+        $(document).ready(function() {
+            for (i = 0; i < kanjiArr.length; i++) {
+                indexArr[i] = i;
+            }
+            var html = convertHtml(indexArr);
+            $("#content").empty();
+            $("#content").html(html);
+        });
+        //Data 
+        var kanjiArr = ["男性","女性","高齢","年上","目上","先輩","後輩","上司","相手","知り合い","友人","仲","生年月日","誕生","年","出身","故郷","成長","成人","合格","進学","退学","就職","退職","失業","残業","生活","通勤","学歴","給料","面接","休憩","観光","帰国","帰省","帰宅","参加","出席","欠席","遅刻","化粧","計算","計画","成功","失敗","準備","整理","注文","貯金","徹夜","引っ越し","身長","体重","けが","会","趣味","興味","思い出","冗談","目的","約束","おしゃべり","遠慮","我慢","迷惑","希望","夢","賛成","反対","想像","努力"];
+var hiraArr = ["だんせい","じょせい","こうれい","としうえ","めうえ","せんぱい","こうはい","じょうし","あいて","しりあい","ゆうじん","なか","せいねんがつび","たんじょう","とし","しゅっしん","こきょう","せいちょう","せいじん","ごうかく","しんがく","たいがく","しゅうしょく","たいしょく","しつぎょう","ざんぎょう","せいかつ","つうきん","がくれき","きゅうりょう","めんせつ","きゅうけい","かんこう","きこく","きせい","きたく","さんか","しゅっせき","けっせき","ちこく","けしょう","けいさん","けいかく","せいこう","しっぱい","じゅんび","せいり","ちゅうもん","ちょきん","てつや","ひっこし","しんちょう","たいじゅう","けが","かい","しゅみ","きょうみ","おもいで","じょうだん","もくてき","やくそく","おしゃべり","えんりょ","がまん","めいわく","きぼう","ゆめ","さんせい","はんたい","そうぞう","どりょく"];
+var meanArr = ["nam giới, đàn ông","nữ giới, phụ nữ","tuổi cao","hơn tuổi","cấp trên, bề trên, người trên","tiền bối, người đi trước","hậu bối, người đi sau","cấp trên","đối tác, đối phương","người quen","bạn thân","quan hệ","ngày sinh","sự ra đời","năm, tuổi","xuất thân, gốc gác","cố hương, quê hương, bản quán","trưởng thành, lớn lên","người trưởng thành","thi đỗ, trúng tuyển","học tiếp lên cao","bỏ học , nghỉ học","công ăn việc làm, làm việc","bỏ việc, nghỉ việc","thất nghiệp, không có việc làm","làm thêm, làm ngoài giờ","sinh hoạt, cuộc sống","đi làm","bằng cấp, quá trình học","lương","phỏng vấn, thi vấn đáp","nghỉ giải lao","tham quan, du lịch","về nước","về quê","về nhà","tham gia, tham dự","có mặt, tham dự","vắng mặt, không tham dự","muộn","trang điểm, hóa trang","tính toán","kế hoạch","thành công","thất bại","chuẩn bị","chỉnh sửa, thu dọn, sửa","gọi món, đặt hàng","tiết kiệm tiền, tiền tiết kiệm","thức trắng đêm","chuyển nhà","chiều cao, tầm vóc","trọng lượng","vết thương","hội","sở thích, yêu thích","hứng thú","kỉ niệm, kí ức","đùa cợt, trêu đùa","mục đích","lời hứa, cuộc hẹn","nói chuyện","khách khí, ngần ngại","chịu đựng, kìm nén","rắc rối, phiền phức, quấy rầy","kì vọng, mong muốn","ước mơ","tán thành, phê duyệt","phản đối","tưởng tượng","nỗ lực"];
+    </script>
+</body>
+
+</html>
+<!-- 
+<div class="col-lg-5 m-3 bg-white corner_radius">
+    <div class="d-flex align-items-center justify-content-center board" onclick="clickBtn(0)">
+        <div class="card" id="card_0">
+            <div class="front">
+                <div class="p-2 bd-highlight">
+                    <span class="fs_kanji">抱く</span>
+                    <span class="fs_hira">だく</span>
+                </div>
+            </div>
+            <div class="back">
+                <div class="p-2 bd-highlight">
+                    <span class="bs_kanji">抱く</span>
+                    <span class="bs_hira">だく</span>
+                    <span class="bs_mean">ôm ấp, bế</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+

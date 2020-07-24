@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>JpT</title>
+    <link href="../css/sb-admin-2.css" rel="stylesheet">
+    <link href="../css/customKanji.css" rel="stylesheet">
+    <link rel="icon" href="../img/icon.ico">
+</head>
+
+<body class="bg-gradient-dark">
+    <div class="container">
+        <div class="col-lg-12">
+            <div class="text-center mt-3" id="ontop">
+                <h1 class="h4 text-white mb-3" style="font-size: 32px">JpT Home</h1>
+            </div>
+        </div>
+
+        <div class="row justify-content-md-center" id="content">
+        </div>
+
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-4 m-4">
+                <a class="btn btn-block text-white btn_bg_blue" href="../index.html">Start Page</a>
+            </div>
+			<div class="col col-lg-4 m-4">
+                <a class="btn btn-block text-white btn_bg_blue" onclick="randomCard()">Sắp xếp lại</a>
+            </div>
+        </div>
+    </div>
+    <script src="../vendor/jquery/jquery.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.js"></script>
+    <script src="../js/sb-admin-2.js"></script>
+    <script type="text/javascript">
+        var indexArr = [];
+
+        function randomArr(arr) {
+            var copyArr = arr.slice();
+            var result = [];
+            var i = 0;
+            while (copyArr.length > 0) {
+                var index = Math.floor(Math.random() * copyArr.length);
+                result[i] = copyArr[index];
+                copyArr.splice(index, 1);
+                i++;
+            }
+            return result;
+        }
+
+        function convertHtml(arr) {
+            var html = "";
+            for (i = 0; i < arr.length; i++) {
+                html = html + "<div class=\"col-lg-5 m-3 bg-white corner_radius\"><div class=\"d-flex align-items-center justify-content-center board\" onclick=\"clickBtn(" + i + ")\"><div class=\"card\" id=\"card_" + i + "\"><div class=\"front\"><div class=\"p-2 bd-highlight\"><h1 class=\"fs_kanji\">" + kanjiArr[arr[i]] + "</h1></div></div><div class=\"back\"><div class=\"p-2 bd-highlight\"><span class=\"bs_hanviet\">" + hanvietArr[i] + "</span><span class=\"bs_kanji\">" + kanjiArr[arr[i]] + "</span><span class=\"bs_hira\">" + hiraArr[arr[i]] + "</span><span class=\"bs_mean\">" + meanArr[arr[i]] + "</span></div></div></div></div></div>";
+            }
+            return html;
+        }
+
+        function clickBtn(id) {
+            $('#card_' + id).toggleClass('flipped');
+        }
+
+
+
+        function randomCard() {
+            var arr = randomArr(indexArr);
+            var html = convertHtml(arr);
+            $("#content").empty();
+            $("#content").html(html);
+
+            $('html, body').stop().animate({
+                scrollTop: ($("#ontop").offset().top)
+            }, 800, 'easeInOutExpo');
+        }
+
+        $(document).ready(function() {
+            for (i = 0; i < kanjiArr.length; i++) {
+                indexArr[i] = i;
+            }
+            var html = convertHtml(indexArr);
+            $("#content").empty();
+            $("#content").html(html);
+        });
+        //Data
+        var kanjiArr = ["丸","久","才","支","戸","欠","王","化","内","反","比","夫","仏","毛","予","由","未","布","包","末","平","辺","氷","付","皮","犯","必","石","他","打","加","可","央","刊","玉","旧","号","皿","札","史","失","示","申","礼","令","列","老","式","州","寺","次","守","糸","在","再","向","交","血","件","共","曲","各","印","因","羽","団","竹","仲","虫","兆","伝","当","成","全","争","任","両","利","余","防","役","返","判","臣","身","折","努","投","対","束","谷","位","囲","完","角","快","改","技","局","君","均","形"];
+var hiraArr = ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""];
+var hanvietArr = ["HOÀN","CỬU","TÀI","CHI","HỘ","KHIẾM","VƯƠNG","HÓA","NỘI","PHẢN","TỈ","PHU","PHẬT","MAO","DỰ","DO","VỊ","BỐ","BAO","MẠT","BÌNH","BIÊN","BĂNG","PHÓ","BÌ","PHẠM","TẤT","THẠCH","THA","ĐẢ","GIA","KHẢ","ƯƠNG","SAN","NGỌC","CỰU","HIỆU","MÃNH","TRÁT","SỬ","THẤT","THỊ","THÂN","LỄ","LỆNH","LIỆT","LÃO","THỨC","CHÂU","TỰ","THỨ","THỦ","MỊCH","TẠI","TÁI","HƯỚNG","GIAO","HUYẾT","KIỆN","CỘNG","KHÚC","CÁC","ẤN","NHÂN","VŨ","ĐOÀN","TRÚC","TRỌNG","TRÙNG","TRIỆU","TRUYỀN","ĐƯƠNG","THÀNH","TOÀN","TRANH","NHIỆM","LƯỠNG","LỢI","DƯ","PHÒNG","DỊCH","PHẢN","PHÁN","THẦN","THÂN","CHIẾT","NỖ","ĐẦU","ĐỐI","THÚC","CỐC","VỊ","VI","HOÀN","GIÁC","KHOÁI","CẢI","KĨ","CỤC","QUÂN","QUÂN","HÌNH"];
+var meanArr = ["tròn","vĩnh cửu","tài giỏi","chi nhánh","cửa","khiếm khuyết","vua","biến hóa","bên trong","phản đối","tỉ lệ","chồng","phật giáo","lông","dự định","lý do","mùi vị","vải","bao bọc","hết, cuối","hòa bình","lân cận","băng giá","giao phó","vỏ, da","phạm nhân","tất yếu","đá","khác","đánh đạp","gia tăng","có thể","chính giữa","tập san","hòn ngọc","già cũ","dấu hiệu","cái đĩa","tiền giấy","lịch sử","mất","hiển thị","xưng tên","nghi lễ","mệnh lệnh","hàng lối","ông già","nghi thức","đại lục","chùa","thứ tự","giữ","chỉ, tơ","tồn tại","một lần nữa","phương hướng","giao thông","máu","sự kiện","cộng tác","ca khúc","mỗi","in ấn","nguyên nhân","lông, cánh","đoàn thể","tre, trúc","đứng giữa","côn trùng","một ngàn tỉ","truyền đạt","bây giờ","thành công","toàn bộ","chiến tranh","trách nhiệm","cả hai","lợi ích","dư thừa","phòng ngừa","phụ vụ","trả lại","phán xét","thần dân","cơ thể","bẻ gãy","nỗ lực","đầu tƣ","phản đối","bó lại","thung lũng","vị trí","chu vi","hoàn thành","góc cạnh","vui thích","cải cách","kĩ thuật","bộ phận","anh (chị)","bình quân","hình dạng"];
+    </script>
+</body>
+
+</html>
+
