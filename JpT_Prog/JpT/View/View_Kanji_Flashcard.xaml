@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:gif="http://wpfanimatedgif.codeplex.com"
              xmlns:local="clr-namespace:JpT"
              mc:Ignorable="d" 
              Background="Aquamarine">
@@ -44,14 +45,15 @@
             <TabItem Header="_Kotoba" Width="268" Name="tabKotoba">
             </TabItem>
         </TabControl>
-        
-        <Grid Height="600" Margin="0 25 0 0" VerticalAlignment="Top">
-            <StackPanel Name="tabSelectLesson" Visibility="Hidden">
+
+        <Grid Height="615" Margin="0 25 0 0" VerticalAlignment="Top">
+            <StackPanel Name="tabSelectLesson" Visibility="Visible">
+                <Button Content="Update Html" Width="140" HorizontalAlignment="Right" Margin="15 15 30 15" Click="Btn_UpdateHtml_Click"/>
                 <DataGrid  Name="dgvLesson" ScrollViewer.VerticalScrollBarVisibility="Visible"
                           CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False"
                           CanUserResizeRows="False" CanUserSortColumns="False" AutoGenerateColumns="False"
                           SelectionMode="Single" SelectionUnit ="FullRow" Background="AliceBlue" 
-                          ItemsSource="{Binding LessonList}" Height="440" Width="480" Margin="0 60 0 0" BorderThickness="1">
+                          ItemsSource="{Binding LessonList}" Height="440" Width="480" Margin="0 0 0 0" BorderThickness="1">
                     <DataGrid.Columns>
                         <DataGridTemplateColumn Header="Select" Width="*">
                             <DataGridTemplateColumn.CellTemplate>
@@ -69,7 +71,7 @@
                     <Button Content="Tiêu chuẩn" Width="140" Height="32" Margin="10" Click="startBtnClick"/>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Name="tabFlashCard" Visibility="Visible">
+            <StackPanel Name="tabFlashCard" Visibility="Hidden">
                 <StackPanel Margin="20 30 20 10" Height="480" Background="WhiteSmoke" KeyUp="checkkeydown">
                     <Grid  Margin="20">
                         <TextBox Text="{Binding Lesson}" FontSize="20" TextAlignment="Center" HorizontalAlignment="Left"/>
@@ -100,7 +102,24 @@
                 </DataGrid>
                 <Button Content="_Lưu và thoát" Width="140" Margin="0 25 0 20" Click="startBtnBackToMenu" Name="btnBackMenu" Height="36"/>
             </StackPanel>
+            <Grid Name="tabUpdateHtml" Visibility="Hidden">
+                <Grid Background="Black" Opacity="0.5"/>
+                <Border BorderBrush="Transparent" BorderThickness="1,1,1,1" Height="220" Width="360" CornerRadius="10,10,10,10" Background="AliceBlue">
+                    <Grid>
+                        <StackPanel Margin="10 12 10 10">
+                            <Label Content="Update dữ liệu cho web:" HorizontalAlignment="Center" FontSize="18" FontWeight="DemiBold"/>
+                            <TextBox Text="https://vutuan116.github.io/jp" FontSize="18" Foreground="Brown" Margin="0 -5 0 0"/>
+                            <Line Stroke="DarkGray" X1="0" X2="340" Y1="0" Y2="0" StrokeThickness="4" Margin="0 12 0 0"/>
+                            <StackPanel Orientation="Horizontal" Margin="10 20 10 20">
+                                <Label Content="Folder:"  FontSize="16" Margin="10 0 5 0"/>
+                                <TextBox Width="240" Height="32" Text="D:\Github\jp\JpT_Web" FontSize="16" TextAlignment="Left" VerticalContentAlignment="Center" BorderThickness="1" Padding="2" Name="txt_Folder"/>
+                            </StackPanel>
+                            <Button Content="Thực hiện" FontSize="16" Width="140" Click="Btn_Run_Update_Html_Click"/>
+                            <Line Stroke="DarkGray" X1="0" X2="340" Y1="0" Y2="0" StrokeThickness="4" Margin="0 16 0 0"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
         </Grid>
-
     </Grid>
 </UserControl>                                          

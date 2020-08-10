@@ -36,15 +36,14 @@ namespace JpT
             tabSelectLesson.Visibility = Visibility.Visible;
             tabFlashCard.Visibility = Visibility.Hidden;
             tabShowAll.Visibility = Visibility.Hidden;
+            tabUpdateHtml.Visibility = Visibility.Hidden;
             tbxKanji.Foreground = Brushes.Black;
             tbxHanviet.Foreground = Brushes.Black;
             tbxKotoba.Foreground = Brushes.Black;
             _model.LessonList = _logic.GetListLesson(tabName);
-
-            createHtml();
         }
 
-        private void createHtml()
+        private void createHtml(string folderPath)
         {
             ObservableCollection<LessonModel> lessonList = _logic.GetListLesson(TabName.Kanji);
             string listLessonKanji = "";
@@ -69,9 +68,9 @@ namespace JpT
                 hanvietArr = hanvietArr.Substring(0, hanvietArr.Length - 1) + "];";
                 meanArr = meanArr.Substring(0, meanArr.Length - 1) + "];";
 
-                string content = readFile(@"E:\僕の\jp\kanjiTemplate.html");
+                string content = readFile(Path.Combine(folderPath, "kanjiTemplate.html"));
                 content = content.Replace("{Data}", kanjiArr + Environment.NewLine + hiraArr + Environment.NewLine + hanvietArr + Environment.NewLine + meanArr);
-                writeFile(@"E:\僕の\jp\layout\" + lesson.LessonName + ".html", content);
+                writeFile(Path.Combine(folderPath, "layout", lesson.LessonName + ".html"), content);
             }
 
             lessonList = _logic.GetListLesson(TabName.Kotoba);
@@ -95,15 +94,15 @@ namespace JpT
                 hiraArr = hiraArr.Substring(0, hiraArr.Length - 1) + "];";
                 meanArr = meanArr.Substring(0, meanArr.Length - 1) + "];";
 
-                string content = readFile(@"E:\僕の\jp\kotobaTemplate.html");
+                string content = readFile(Path.Combine(folderPath, "kotobaTemplate.html"));
                 content = content.Replace("{Data}", kanjiArr + Environment.NewLine + hiraArr + Environment.NewLine + meanArr);
-                writeFile(@"E:\僕の\jp\layout\" + lesson.LessonName + ".html", content);
+                writeFile(Path.Combine(folderPath, "layout", lesson.LessonName + ".html"), content);
             }
 
-            string contentIndex = readFile(@"E:\僕の\jp\indexTemplate.html");
+            string contentIndex = readFile(Path.Combine(folderPath, "indexTemplate.html"));
             contentIndex = contentIndex.Replace("{List Kanji}", listLessonKanji);
             contentIndex = contentIndex.Replace("{List Từ Vựng}", listLessonKotoba);
-            writeFile(@"E:\僕の\jp\index.html", contentIndex);
+            writeFile(Path.Combine(folderPath, "index.html"), contentIndex);
         }
 
         string readFile(string path)
@@ -113,7 +112,7 @@ namespace JpT
         }
 
         void writeFile(string path, string content)
-        {           
+        {
             if (File.Exists(path))
             {
                 File.Delete(path);
@@ -130,13 +129,11 @@ namespace JpT
             if (e.Key == System.Windows.Input.Key.Right)
             {
                 changeFlashCard();
-                //changeColorText();
             }
             else if (e.Key == System.Windows.Input.Key.Left)
             {
                 isShowAll = true;
                 backWord();
-                //changeColorText();
             }
             else if (e.Key == System.Windows.Input.Key.Escape)
             {
@@ -150,7 +147,6 @@ namespace JpT
             else if (e.Key == System.Windows.Input.Key.R)
             {
                 _model.IsRepeat = !_model.IsRepeat;
-                //changeColorText();
             }
         }
 
@@ -450,6 +446,18 @@ namespace JpT
                 tabName = TabName.Kotoba;
             }
             initCheckMemo();
+        }
+
+        private void Btn_UpdateHtml_Click(object sender, RoutedEventArgs e)
+        {
+            tabUpdateHtml.Visibility = Visibility.Visible;
+        }
+
+        private void Btn_Run_Update_Html_Click(object sender, RoutedEventArgs e)
+        {
+            createHtml(txt_Folder.Text);
+            MessageBox.Show("Đã hoàn thành update file html tại:" + Environment.NewLine + txt_Folder.Text);
+            tabUpdateHtml.Visibility = Visibility.Hidden;
         }
     }
 }
