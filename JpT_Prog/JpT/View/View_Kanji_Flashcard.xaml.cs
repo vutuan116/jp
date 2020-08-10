@@ -49,7 +49,7 @@ namespace JpT
             string listLessonKanji = "";
             foreach (LessonModel lesson in lessonList)
             {
-                listLessonKanji += "<p><a href=\"layout\\" + lesson.LessonName + ".html\">" + lesson.LessonName + "</a></p>" + Environment.NewLine;
+                listLessonKanji += "<p><a href=\"JpT_Web\\layout\\" + lesson.LessonName + ".html\">" + lesson.LessonName + "</a></p>" + Environment.NewLine;
                 List<KanjiModel> kanjiList = _logic.GetListObjByLesson(TabName.Kanji, lesson);
                 string fileName = lesson.LessonName;
                 string kanjiArr = "var kanjiArr = [";
@@ -77,7 +77,7 @@ namespace JpT
             string listLessonKotoba = "";
             foreach (LessonModel lesson in lessonList)
             {
-                listLessonKotoba += "<p><a href=\"layout\\" + lesson.LessonName + ".html\">" + lesson.LessonName + "</a></p>" + Environment.NewLine;
+                listLessonKotoba += "<p><a href=\"JpT_Web\\layout\\" + lesson.LessonName + ".html\">" + lesson.LessonName + "</a></p>" + Environment.NewLine;
 
                 List<KanjiModel> kotobaList = _logic.GetListObjByLesson(TabName.Kotoba, lesson);
                 string fileName = lesson.LessonName;
@@ -96,13 +96,13 @@ namespace JpT
 
                 string content = readFile(Path.Combine(folderPath, "kotobaTemplate.html"));
                 content = content.Replace("{Data}", kanjiArr + Environment.NewLine + hiraArr + Environment.NewLine + meanArr);
-                writeFile(Path.Combine(folderPath, "layout", lesson.LessonName + ".html"), content);
             }
 
             string contentIndex = readFile(Path.Combine(folderPath, "indexTemplate.html"));
             contentIndex = contentIndex.Replace("{List Kanji}", listLessonKanji);
             contentIndex = contentIndex.Replace("{List Từ Vựng}", listLessonKotoba);
-            writeFile(Path.Combine(folderPath, "index.html"), contentIndex);
+            DirectoryInfo folderParent = Directory.GetParent(folderPath);
+            writeFile(Path.Combine(folderParent.FullName, "index.html"), contentIndex);
         }
 
         string readFile(string path)

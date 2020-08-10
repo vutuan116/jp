@@ -29,7 +29,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\JpT_Run\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -167,6 +167,7 @@
     <Resource Include="Image\icon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resource\WpfAnimatedGif.dll" />
     <Resource Include="Image\loading.gif" />
     <Content Include="Resource\EPPlus.dll" />
     <Content Include="Resource\MaterialDesignColors.dll" />
