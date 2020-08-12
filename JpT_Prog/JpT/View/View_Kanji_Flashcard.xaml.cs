@@ -51,7 +51,6 @@ namespace JpT
             {
                 listLessonKanji += "<p><a href=\"JpT_Web\\layout\\" + lesson.LessonName + ".html\">" + lesson.LessonName + "</a></p>" + Environment.NewLine;
                 List<KanjiModel> kanjiList = _logic.GetListObjByLesson(TabName.Kanji, lesson);
-                string fileName = lesson.LessonName;
                 string kanjiArr = "var kanjiArr = [";
                 string hiraArr = "var hiraArr = [";
                 string hanvietArr = "var hanvietArr = [";
@@ -80,7 +79,6 @@ namespace JpT
                 listLessonKotoba += "<p><a href=\"JpT_Web\\layout\\" + lesson.LessonName + ".html\">" + lesson.LessonName + "</a></p>" + Environment.NewLine;
 
                 List<KanjiModel> kotobaList = _logic.GetListObjByLesson(TabName.Kotoba, lesson);
-                string fileName = lesson.LessonName;
                 string kanjiArr = "var kanjiArr = [";
                 string hiraArr = "var hiraArr = [";
                 string meanArr = "var meanArr = [";
@@ -96,6 +94,7 @@ namespace JpT
 
                 string content = readFile(Path.Combine(folderPath, "kotobaTemplate.html"));
                 content = content.Replace("{Data}", kanjiArr + Environment.NewLine + hiraArr + Environment.NewLine + meanArr);
+                writeFile(Path.Combine(folderPath, "layout", lesson.LessonName + ".html"), content);
             }
 
             string contentIndex = readFile(Path.Combine(folderPath, "indexTemplate.html"));
