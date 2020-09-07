@@ -61,7 +61,7 @@
         function convertHtml(arr) {
             var html = "";
             for (i = 0; i < arr.length; i++) {
-                html = html + "<div class=\"col-lg-5 m-3 bg-white corner_radius\"><div class=\"d-flex align-items-center justify-content-center board\" onclick=\"clickBtn(" + i + ")\"><div class=\"card\" id=\"card_" + i + "\"><div class=\"front\"><div class=\"p-2 bd-highlight\"><h1 class=\"fs_kanji\">" + kanjiArr[arr[i]] + "</h1></div></div><div class=\"back\"><div class=\"p-2 bd-highlight\"><span class=\"bs_hanviet\">" + hanvietArr[i] + "</span><span class=\"bs_kanji\">" + kanjiArr[arr[i]] + "</span><span class=\"bs_hira\">" + hiraArr[arr[i]] + "</span><span class=\"bs_mean\">" + meanArr[arr[i]] + "</span></div></div></div></div></div>";
+                html = html + "<div class=\"col-lg-5 m-3 bg-white corner_radius\"><div class=\"d-flex align-items-center justify-content-center board\" onclick=\"clickBtn(" + i + ")\"><div class=\"card\" id=\"card_" + i + "\"><div class=\"front\"><div class=\"p-2 bd-highlight\"><h1 class=\"fs_kanji\">" + kanjiArr[arr[i]] + "</h1></div></div><div class=\"back\"><div class=\"p-2 bd-highlight\"><span class=\"bs_hanviet\">" + hanvietArr[arr[i]] + "</span><span class=\"bs_kanji\">" + kanjiArr[arr[i]] + "</span><span class=\"bs_hira\">" + hiraArr[arr[i]] + "</span><span class=\"bs_mean\">" + meanArr[arr[i]] + "</span></div></div></div></div></div>";
             }
             return html;
         }
