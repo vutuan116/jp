@@ -8,10 +8,11 @@
     <title>JpT</title>
     <link href="../css/sb-admin-2.css" rel="stylesheet">
     <link href="../css/customKanji.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link rel="icon" href="../img/icon.ico">
 </head>
 
-<body class="bg-gradient-dark">
+<body class="bg-gradient-dark" onscroll="scroll()">
     <div class="container">
         <div class="col-lg-12">
             <div class="text-center mt-3" id="ontop">
@@ -24,15 +25,21 @@
 
         <div class="row justify-content-md-center">
             <div class="col col-lg-4 m-4">
-                <a class="btn btn-block text-white btn_bg_blue" href="../../index.html">Start Page</a>
-            </div>
-			<div class="col col-lg-4 m-4">
-                <a class="btn btn-block text-white btn_bg_blue" onclick="randomCard()">Sắp xếp lại</a>
+                <a class="btn btn-block text-white btn_bg_blue" onclick="randomCard()"><i class="fas fa-sync"></i> Sắp xếp lại</a>
             </div>
         </div>
+        
+        <a class="button_menu rounded" href="../../index.html">
+            <i class="fas fa-home"></i>
+        </a>
+        <a class="button_random rounded" onclick="randomCard()">
+            <i class="fas fa-sync"></i>
+        </a>
+        <a class="button_ontop rounded" onclick="ontop()">
+            <i class="fas fa-chevron-up"></i>
+        </a>
     </div>
     <script src="../vendor/jquery/jquery.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="../vendor/jquery-easing/jquery.easing.js"></script>
     <script src="../js/sb-admin-2.js"></script>
     <script type="text/javascript">
@@ -71,9 +78,26 @@
             $("#content").empty();
             $("#content").html(html);
 
+            ontop();
+        }
+
+        function ontop() {
             $('html, body').stop().animate({
                 scrollTop: ($("#ontop").offset().top)
             }, 800, 'easeInOutExpo');
+        }
+
+        function scroll(){
+            var scrollDistance = $(this).scrollTop();
+            if (scrollDistance > 100) {
+                $('.button_menu').fadeIn();
+                $('.button_random').fadeIn();
+                $('.button_ontop').fadeIn();
+            } else {
+                $('.button_menu').fadeOut();
+                $('.button_random').fadeOut();
+                $('.button_ontop').fadeOut();
+            }
         }
 
         $(document).ready(function() {
@@ -85,10 +109,10 @@
             $("#content").html(html);
         });
         //Data
-        var kanjiArr = ["市役所","役員","役に立つ","郵便","郵便局","薬局","交番","交換","交通","差","差し出す","差出人","交差点","～点","点数","歩道橋","橋","公園"];
-var hiraArr = ["しやくしょ","やくいん","やくにたつ","ゆうびん","ゆうびんきょく","やっきょく","こうばん","こうかん","こうつう","さ","さしだす","さしだしにん","こうさてん","てん","てんすう","ほどうきょう","はし","こうえん"];
-var hanvietArr = ["THỊ DỊCH SỞ","DỊCH VIÊN","DỊCH LẬP","BƯU TIỆN","BƯU TIỆN CỤC","DƯỢC CỤC","GIAO PHIÊN","GIAO HOÁN","GIAO THÔNG","SOA","SOA XUẤT","SOA XUẤT NHÂN","GIAO SOA ĐIỂM","ĐIỂM","ĐIỂM SỔ","BỘ ĐẠO KIỀU","KIỀU","CÔNG VIÊN"];
-var meanArr = ["tòa thị chính, ubnd","công chức","có ích, có lợi","bưu chính","bưu điện","tiệm thuốc tây","đồn cảnh sát","trao đổi, giao dịch","giao thông","khác biệt","đưa ra, lấy ra","người gửi","giao lộ","điểm ~","điểm số","cầu vượt dành cho người đi bộ","cầu","công viên"];
+        var kanjiArr = ["役員","役に立つ","郵便局","薬局","交番","交通","差","差出人","交差点","～点","点数","歩道橋","橋","公園"];
+var hiraArr = ["やくいん","やくにたつ","ゆうびんきょく","やっきょく","こうばん","こうつう","さ","さしだしにん","こうさてん","てん","てんすう","ほどうきょう","はし","こうえん"];
+var hanvietArr = ["DỊCH VIÊN","DỊCH LẬP","BƯU TIỆN CỤC","DƯỢC CỤC","GIAO PHIÊN","GIAO THÔNG","SOA","SOA XUẤT NHÂN","GIAO SOA ĐIỂM","ĐIỂM","ĐIỂM SỔ","BỘ ĐẠO KIỀU","KIỀU","CÔNG VIÊN"];
+var meanArr = ["công chức","có ích, có lợi","bưu điện","tiệm thuốc tây","đồn cảnh sát","giao thông","khác biệt","người gửi","giao lộ","điểm ~","điểm số","cầu vượt dành cho người đi bộ","cầu","công viên"];
     </script>
 </body>
 

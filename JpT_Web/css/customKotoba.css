@@ -89,3 +89,60 @@
     -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg);
 }
+
+.button_menu,.button_random, .button_ontop{
+    position: fixed;
+    display: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    text-align: center;
+    color: #FFFFFF!important;
+    background: rgba(250,250,209,.5);
+    line-height: 46px;
+}
+
+.button_menu{
+    right: 10px;
+    top: 10px;
+}
+
+.button_ontop{
+    right: 10px;
+    bottom: 60px;
+}
+
+.button_random{
+    right: 10px;
+    bottom: 10px;
+}
+
+@media only screen and (max-width: 992px) {
+    .button_menu,
+    .button_random,
+    .button_ontop {
+        position: fixed;
+        display: none;
+        width: 2.75rem;
+        height: 2.75rem;
+        text-align: center;
+        color: #FFFFFF !important;
+        background: rgba(22, 22, 55, .9);
+        line-height: 46px;
+    }
+
+    .button_menu {
+        top: inherit;
+        left: 10px;
+        bottom: 10px;
+    }
+
+    .button_ontop {
+        right: 10px;
+        bottom: 10px;
+    }
+
+    .button_random {
+        right: 60px;
+        bottom: 10px;
+    }
+}

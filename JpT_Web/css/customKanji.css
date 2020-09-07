@@ -46,40 +46,41 @@
 }
 
 .card {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-  -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transition: -webkit-transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), -webkit-transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  border-radius: 6px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-  cursor: pointer;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: -webkit-transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), -webkit-transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 6px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
 }
+
 .card div {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  border-radius: 6px;
-  background: #fff;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: box;
-  display: flex;
-  -webkit-box-pack: center;
-  -o-box-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -o-box-align: center;
-  align-items: center;
-  font: 16px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  color: #47525d;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 6px;
+    background: #fff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: box;
+    display: flex;
+    -webkit-box-pack: center;
+    -o-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -o-box-align: center;
+    align-items: center;
+    font: 16px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: #47525d;
 }
 
 .card .back {
@@ -90,4 +91,63 @@
 .card.flipped {
     -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg);
+}
+
+.button_menu,
+.button_random,
+.button_ontop {
+    position: fixed;
+    display: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    text-align: center;
+    color: #FFFFFF !important;
+    background: rgba(250, 250, 209, .5);
+    line-height: 46px;
+}
+
+.button_menu {
+    right: 10px;
+    top: 10px;
+}
+
+.button_ontop {
+    right: 10px;
+    bottom: 60px;
+}
+
+.button_random {
+    right: 10px;
+    bottom: 10px;
+}
+
+@media only screen and (max-width: 992px) {
+    .button_menu,
+    .button_random,
+    .button_ontop {
+        position: fixed;
+        display: none;
+        width: 2.75rem;
+        height: 2.75rem;
+        text-align: center;
+        color: #FFFFFF !important;
+        background: rgba(22, 22, 55, .9);
+        line-height: 46px;
+    }
+
+    .button_menu {
+        top: inherit;
+        left: 10px;
+        bottom: 10px;
+    }
+
+    .button_ontop {
+        right: 10px;
+        bottom: 10px;
+    }
+
+    .button_random {
+        right: 60px;
+        bottom: 10px;
+    }
 }

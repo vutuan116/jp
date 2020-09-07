@@ -8,10 +8,11 @@
     <title>JpT</title>
     <link href="../css/sb-admin-2.css" rel="stylesheet">
     <link href="../css/customKanji.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link rel="icon" href="../img/icon.ico">
 </head>
 
-<body class="bg-gradient-dark">
+<body class="bg-gradient-dark" onscroll="scroll()">
     <div class="container">
         <div class="col-lg-12">
             <div class="text-center mt-3" id="ontop">
@@ -24,15 +25,21 @@
 
         <div class="row justify-content-md-center">
             <div class="col col-lg-4 m-4">
-                <a class="btn btn-block text-white btn_bg_blue" href="../../index.html">Start Page</a>
-            </div>
-			<div class="col col-lg-4 m-4">
-                <a class="btn btn-block text-white btn_bg_blue" onclick="randomCard()">Sắp xếp lại</a>
+                <a class="btn btn-block text-white btn_bg_blue" onclick="randomCard()"><i class="fas fa-sync"></i> Sắp xếp lại</a>
             </div>
         </div>
+        
+        <a class="button_menu rounded" href="../../index.html">
+            <i class="fas fa-home"></i>
+        </a>
+        <a class="button_random rounded" onclick="randomCard()">
+            <i class="fas fa-sync"></i>
+        </a>
+        <a class="button_ontop rounded" onclick="ontop()">
+            <i class="fas fa-chevron-up"></i>
+        </a>
     </div>
     <script src="../vendor/jquery/jquery.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="../vendor/jquery-easing/jquery.easing.js"></script>
     <script src="../js/sb-admin-2.js"></script>
     <script type="text/javascript">
@@ -71,9 +78,26 @@
             $("#content").empty();
             $("#content").html(html);
 
+            ontop();
+        }
+
+        function ontop() {
             $('html, body').stop().animate({
                 scrollTop: ($("#ontop").offset().top)
             }, 800, 'easeInOutExpo');
+        }
+
+        function scroll(){
+            var scrollDistance = $(this).scrollTop();
+            if (scrollDistance > 100) {
+                $('.button_menu').fadeIn();
+                $('.button_random').fadeIn();
+                $('.button_ontop').fadeIn();
+            } else {
+                $('.button_menu').fadeOut();
+                $('.button_random').fadeOut();
+                $('.button_ontop').fadeOut();
+            }
         }
 
         $(document).ready(function() {
@@ -85,10 +109,10 @@
             $("#content").html(html);
         });
         //Data
-        var kanjiArr = ["受信","受ける","受験","付ける","片付ける","受付","付く","科学","外科","内科","教科書","耳鼻科","鼻","婦人","主婦","産婦人科","形式","整形外科","図形","人形","形","骨折","骨","右折","左折","折る","折り紙","折れる"];
-var hiraArr = ["じゅしん","うける","じゅけん","つける","かたづける","うけつけ","つく","かがく","げか","ないか","きょうかしょ","じびか","はな","ふじん","しゅふ","さんふじんか","けいしき","せいけいげか","ずけい","にんぎょう","かたち","こっせつ","ほね","うせつ","させつ","おる","おりがみ","おれる"];
-var hanvietArr = ["THỤ TÍN","THỤ","THỤ NGHIỆM","PHÓ","PHIẾN PHÓ","THỤ PHÓ","PHÓ","KHOA HỌC","NGOẠI KHOA","NỘI KHOA","GIÁO KHOA THƯ","NHĨ TỊ KHOA","TỊ","PHỤ NHÂN","CHỦ PHỤ","SẢN PHỤ NHÂN KHOA","HÌNH THỨC","CHỈNH HÌNH NGOẠI KHOA","ĐỒ HÌNH","NHÂN HÌNH","HÌNH","CỐT CHIẾT","CỐT","HỮU CHIẾT","TẢ CHIẾT","CHIẾT","CHIẾT CHỈ","CHIẾT"];
-var meanArr = ["nhận (tin nhắn)","nhận, dự thi","thi (vào), dự thi","lắp, ghép vào","sắp xếp, dọn dẹp","quầy tiếp tân, lễ tân","đính kèm","khoa học","ngoại khoa","nội khoa","sách giáo khoa","khoa tai mũi họng","cái mũi","phụ nữ","nội trợ","khoa sản","hình thức","khoa ngoại chỉnh hình","hình vẽ","búp bê","hình dáng","gãy xương","xương","rẽ phải","rẽ trái","bẻ gãy, gấp lại","nghệ thuật origami","bị gãy"];
+        var kanjiArr = ["受信","受ける","受験","付ける","片付ける","受付","科学","外科","内科","教科書","耳鼻科","鼻","婦人","主婦","産婦人科","形式","整形外科","図形","人形","形","骨","右折","左折","折り紙","折れる"];
+var hiraArr = ["じゅしん","うける","じゅけん","つける","かたづける","うけつけ","かがく","げか","ないか","きょうかしょ","じびか","はな","ふじん","しゅふ","さんふじんか","けいしき","せいけいげか","ずけい","にんぎょう","かたち","ほね","うせつ","させつ","おりがみ","おれる"];
+var hanvietArr = ["THỤ TÍN","THỤ","THỤ NGHIỆM","PHÓ","PHIẾN PHÓ","THỤ PHÓ","KHOA HỌC","NGOẠI KHOA","NỘI KHOA","GIÁO KHOA THƯ","NHĨ TỊ KHOA","TỊ","PHỤ NHÂN","CHỦ PHỤ","SẢN PHỤ NHÂN KHOA","HÌNH THỨC","CHỈNH HÌNH NGOẠI KHOA","ĐỒ HÌNH","NHÂN HÌNH","HÌNH","CỐT","HỮU CHIẾT","TẢ CHIẾT","CHIẾT CHỈ","CHIẾT"];
+var meanArr = ["nhận (tin nhắn)","nhận, dự thi","thi (vào), dự thi","lắp, ghép vào","sắp xếp, dọn dẹp","quầy tiếp tân, lễ tân","khoa học","ngoại khoa","nội khoa","sách giáo khoa","khoa tai mũi họng","cái mũi","phụ nữ","nội trợ","khoa sản","hình thức","khoa ngoại chỉnh hình","hình vẽ","búp bê","hình dáng","xương","rẽ phải","rẽ trái","nghệ thuật origami","bị gãy"];
     </script>
 </body>
 

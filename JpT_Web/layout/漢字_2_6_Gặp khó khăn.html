@@ -8,10 +8,11 @@
     <title>JpT</title>
     <link href="../css/sb-admin-2.css" rel="stylesheet">
     <link href="../css/customKanji.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link rel="icon" href="../img/icon.ico">
 </head>
 
-<body class="bg-gradient-dark">
+<body class="bg-gradient-dark" onscroll="scroll()">
     <div class="container">
         <div class="col-lg-12">
             <div class="text-center mt-3" id="ontop">
@@ -24,15 +25,21 @@
 
         <div class="row justify-content-md-center">
             <div class="col col-lg-4 m-4">
-                <a class="btn btn-block text-white btn_bg_blue" href="../../index.html">Start Page</a>
-            </div>
-			<div class="col col-lg-4 m-4">
-                <a class="btn btn-block text-white btn_bg_blue" onclick="randomCard()">Sắp xếp lại</a>
+                <a class="btn btn-block text-white btn_bg_blue" onclick="randomCard()"><i class="fas fa-sync"></i> Sắp xếp lại</a>
             </div>
         </div>
+        
+        <a class="button_menu rounded" href="../../index.html">
+            <i class="fas fa-home"></i>
+        </a>
+        <a class="button_random rounded" onclick="randomCard()">
+            <i class="fas fa-sync"></i>
+        </a>
+        <a class="button_ontop rounded" onclick="ontop()">
+            <i class="fas fa-chevron-up"></i>
+        </a>
     </div>
     <script src="../vendor/jquery/jquery.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="../vendor/jquery-easing/jquery.easing.js"></script>
     <script src="../js/sb-admin-2.js"></script>
     <script type="text/javascript">
@@ -71,9 +78,26 @@
             $("#content").empty();
             $("#content").html(html);
 
+            ontop();
+        }
+
+        function ontop() {
             $('html, body').stop().animate({
                 scrollTop: ($("#ontop").offset().top)
             }, 800, 'easeInOutExpo');
+        }
+
+        function scroll(){
+            var scrollDistance = $(this).scrollTop();
+            if (scrollDistance > 100) {
+                $('.button_menu').fadeIn();
+                $('.button_random').fadeIn();
+                $('.button_ontop').fadeIn();
+            } else {
+                $('.button_menu').fadeOut();
+                $('.button_random').fadeOut();
+                $('.button_ontop').fadeOut();
+            }
         }
 
         $(document).ready(function() {
@@ -85,10 +109,10 @@
             $("#content").html(html);
         });
         //Data
-        var kanjiArr = ["困る","消防","消す","消える","消しゴム","予防","防ぐ","救急車","救う","警官","警察","警察署","事故","故障","故～","伝言","伝える","手伝う"];
-var hiraArr = ["こまる","しょうぼう","けす","きえる","けしゴム","よぼう","ふせぐ","きゅうきゅうしゃ","すくう","けいかん","けいさつ","けいさつしょ","じこ","こしょう","こ～","でんごん","つたえる","てつだう"];
-var hanvietArr = ["KHỐN","TIÊU PHÒNG","TIÊU","TIÊU","TIÊU","DƯ PHÒNG","PHÒNG","CỨU CẤP XA","CỨU","CẢNH QUAN","CẢNH SÁT","CẢNH SÁT THỰ","SỰ CỐ","CỐ CHƯỚNG","CỐ","TRUYỀN NGÔN","TRUYỀN","THỦ TRUYỀN"];
-var meanArr = ["khó khăn","cứu hoả","tắt (đèn), xóa","biến mất, dập tắt","cục tẩy","dự phòng","phòng chống","xe cấp cứu","cứu (ai đó)","nhân viên cảnh sát","cảnh sát","sở cảnh sát","tai nạn","hư hỏng, trục trặc","cố ~ (người đã mất)","lời nhắn, tin đồn","truyền lại, nhắn lại","giúp đỡ"];
+        var kanjiArr = ["困る","消す","消える","消しゴム","予防","救急車","救う","警官","警察","警察署","事故","故障","故～","伝言","伝える","手伝う"];
+var hiraArr = ["こまる","けす","きえる","けしゴム","よぼう","きゅうきゅうしゃ","すくう","けいかん","けいさつ","けいさつしょ","じこ","こしょう","こ～","でんごん","つたえる","てつだう"];
+var hanvietArr = ["KHỐN","TIÊU","TIÊU","TIÊU","DƯ PHÒNG","CỨU CẤP XA","CỨU","CẢNH QUAN","CẢNH SÁT","CẢNH SÁT THỰ","SỰ CỐ","CỐ CHƯỚNG","CỐ","TRUYỀN NGÔN","TRUYỀN","THỦ TRUYỀN"];
+var meanArr = ["khó khăn","tắt (đèn), xóa","biến mất, dập tắt","cục tẩy","dự phòng","xe cấp cứu","cứu (ai đó)","nhân viên cảnh sát","cảnh sát","sở cảnh sát","tai nạn","hư hỏng, trục trặc","cố ~ (người đã mất)","lời nhắn, tin đồn","truyền lại, nhắn lại","giúp đỡ"];
     </script>
 </body>
 
