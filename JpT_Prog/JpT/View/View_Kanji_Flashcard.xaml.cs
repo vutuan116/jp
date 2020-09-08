@@ -41,6 +41,7 @@ namespace JpT
          tbxHanviet.Foreground = Brushes.Black;
          tbxKotoba.Foreground = Brushes.Black;
          _model.LessonList = _logic.GetListLesson(tabName);
+         cbxSelectChange(null, null);
       }
 
       private void createHtml(string folderPath)
@@ -465,6 +466,7 @@ namespace JpT
          {
             lesson.IsSelected = false;
          }
+         _model.ContentSelected = "Selected: 0";
       }
 
       private void cbxSelectChange(object sender, RoutedEventArgs e)
