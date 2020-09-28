@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>JpT</title>
+    <link href="../css/sb-admin-2.css" rel="stylesheet">
+    <link href="../css/customKotoba.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link rel="icon" href="../img/icon.ico">
+</head>
+
+<body class="bg-gradient-dark" onscroll="scroll()">
+    <div class="container">
+        <div class="col-lg-12">
+            <div class="text-center mt-3" id="ontop">
+                <h1 class="h4 text-white mb-3" style="font-size: 32px">JpT Home</h1>
+            </div>
+        </div>
+
+        <div class="row justify-content-md-center" id="content">
+        </div>
+
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-4 m-4">
+                <a class="btn btn-block text-white btn_bg_blue" onclick="randomCard()"><i class="fas fa-sync"></i> Sắp xếp lại</a>
+            </div>
+        </div>
+        
+        <a class="button_menu rounded" href="../../index.html">
+            <i class="fas fa-home"></i>
+        </a>
+        <a class="button_random rounded" onclick="randomCard()">
+            <i class="fas fa-sync"></i>
+        </a>
+        <a class="button_ontop rounded" onclick="ontop()">
+            <i class="fas fa-chevron-up"></i>
+        </a>
+    </div>
+    <script src="../vendor/jquery/jquery.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.js"></script>
+    <script src="../js/sb-admin-2.js"></script>
+    <script type="text/javascript">
+        var indexArr = [];
+
+        function randomArr(arr) {
+            var copyArr = arr.slice();
+            var result = [];
+            var i = 0;
+            while (copyArr.length > 0) {
+                var index = Math.floor(Math.random() * copyArr.length);
+                result[i] = copyArr[index];
+                copyArr.splice(index, 1);
+                i++;
+            }
+            return result;
+        }
+
+        function convertHtml(arr) {
+            var html = "";
+            for (i = 0; i < arr.length; i++) {
+                html = html + "<div class=\"col-lg-5 m-3 bg-white corner_radius\"><div class=\"d-flex align-items-center justify-content-center board\" onclick=\"clickBtn(" + arr[i] + ")\"><div class=\"card\" id=\"card_" + arr[i] + "\"><div class=\"front\"><div class=\"p-2 bd-highlight\"><span class=\"fs_kanji\">" + kanjiArr[arr[i]] + "</span><span class=\"fs_hira\">" + hiraArr[arr[i]] + "</span></div></div><div class=\"back\"><div class=\"p-2 bd-highlight\"><span class=\"bs_kanji\">" + kanjiArr[arr[i]] + "</span><span class=\"bs_hira\">" + hiraArr[arr[i]] + "</span><span class=\"bs_mean\">" + meanArr[arr[i]] + "</span></div></div></div></div></div>";
+            }
+            return html;
+        }
+
+        function clickBtn(id) {
+            $('#card_' + id).toggleClass('flipped');
+        }
+
+
+
+        function randomCard() {
+            var arr = randomArr(indexArr);
+            var html = convertHtml(arr);
+            $("#content").empty();
+            $("#content").html(html);
+
+            ontop();
+        }
+
+        function ontop() {
+            $('html, body').stop().animate({
+                scrollTop: ($("#ontop").offset().top)
+            }, 800, 'easeInOutExpo');
+        }
+
+        function scroll(){
+            var scrollDistance = $(this).scrollTop();
+            if (scrollDistance > 100) {
+                $('.button_menu').fadeIn();
+                $('.button_random').fadeIn();
+                $('.button_ontop').fadeIn();
+            } else {
+                $('.button_menu').fadeOut();
+                $('.button_random').fadeOut();
+                $('.button_ontop').fadeOut();
+            }
+        }
+
+        $(document).ready(function() {
+            for (i = 0; i < kanjiArr.length; i++) {
+                indexArr[i] = i;
+            }
+            var html = convertHtml(indexArr);
+            $("#content").empty();
+            $("#content").html(html);
+        });
+        //Data 
+        var kanjiArr = ["はります","掛けます","飾ります","並べます","植えます","戻します","まとめます","方づけます","しまいます","決めます","知らせます","祖横断します","予習します","復習します","そのままにします","お子さん","授業","講義","ミーテイング","予定","お知らせ","案内書","カレンダー","ポスター","ごみ箱","人形","花瓶","鏡","引き出し","玄関","廊下","壁","池","交番","元の　所","周り","真ん中","すみ","まだ","―ほど","予定表","ごくろうさま","希望","何かご希望がありますか","ミュージカル","それはいいですな","丸い","月","地球","うれしい","いや（な）","すると","目が覚めます"];
+var hiraArr = ["","かけます","かざります","ならべます","うえます","もどします","","かたづけます","","きめます","しらせます","そうだんします","よしゅうします","ふくしゅうします","","おこさん","じゅぎょう","こうぎ","","よてい","おしらせ","あんないしょ","","","ごみばこ","にんぎょう","かびん","かがみ","ひきだし","げんかん","ろうか","かべ","いけ","こうばん","もとのところ","まわり","まんなか","","","","よていひょう","","きぼう","なにかごきぼうがありますか","","","まるい","つき","ちきゅう","","","","めがさめます"];
+var meanArr = ["dán","treo","trang trí","xếp thành hàng","trồng (cây)","đưa về, trả về","nhóm lại, tóm tắt","dọn dẹp, sắp xếp","cất vào, để vào","quyết định","thông báo","thảo luận, trao đổi , bàn bạc","chuẩn bị bài mới","ôn bài cũ","để nguyên như thế","con (dùng đối với người khác)","giờ học","bài giảng","cuộc họp","kế hoạch, dự định","bản thông báo","tài liệu hướng dẫn","lịch , tờ lịch","tờ quảng cáo, tờ áp phích","thùng rác","con búp bê, con rối","lọ hoa","cái gương","ngăn kéo","cửa vào","hành lang","bức tường","cái ao","trạm cảnh sát","địa điểm ban đầu","xung quanh","giữa, trung tâm","góc","chưa","chừng—","thời khóa biểu","anh, chị đã làm việc vất vả/cảm ơn anh, chị","hi vọng, nguyện vọng","anh/chị có nguyện vọng gì không?","ca kịch","","tròn","mặt trăng","trái đất","vui","chán, ghét, không chấp nhận được","sau đó, tiếp đó","tỉnh giấc, mở mắt"];
+    </script>
+</body>
+
+</html>
+<!-- 
+<div class="col-lg-5 m-3 bg-white corner_radius">
+    <div class="d-flex align-items-center justify-content-center board" onclick="clickBtn(0)">
+        <div class="card" id="card_0">
+            <div class="front">
+                <div class="p-2 bd-highlight">
+                    <span class="fs_kanji">抱く</span>
+                    <span class="fs_hira">だく</span>
+                </div>
+            </div>
+            <div class="back">
+                <div class="p-2 bd-highlight">
+                    <span class="bs_kanji">抱く</span>
+                    <span class="bs_hira">だく</span>
+                    <span class="bs_mean">ôm ấp, bế</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+
