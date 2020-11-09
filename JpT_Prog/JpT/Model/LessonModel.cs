@@ -2,9 +2,21 @@
 {
     public class LessonModel : BaseModel
     {
+        private string _type;
         private string _lessonName;
         private bool _isSelected;
         private string _lastLearning;
+
+        public string Type
+        {
+            get { return _type; }
+            set
+            {
+                if (_type == value) return;
+                _type = value;
+                OnPropertyChanged("Type");
+            }
+        }
 
         public string LessonName
         {

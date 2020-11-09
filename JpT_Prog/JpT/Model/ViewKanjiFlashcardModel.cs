@@ -13,7 +13,7 @@ namespace JpT.Model
       private string _hanViet;
       private string _meaning;
       private ObservableCollection<LessonModel> _lessonList = new ObservableCollection<LessonModel>();
-      private ObservableCollection<KanjiModel> _kanjiList = new ObservableCollection<KanjiModel>();
+      private ObservableCollection<DataModel> _kanjiList = new ObservableCollection<DataModel>();
 
       public string ContentSelected
       {
@@ -138,7 +138,7 @@ namespace JpT.Model
          }
       }
 
-      public ObservableCollection<KanjiModel> KanjiList
+      public ObservableCollection<DataModel> KanjiList
       {
          get { return _kanjiList; }
          set

@@ -1,0 +1,64 @@
+@media (max-width:660px) {
+    .main-container {
+        padding-top: 0px !important;
+    }
+
+    .pl-0 {
+        padding-left: 15px !important;
+    }
+
+    .div_table {
+        margin-left: 15px !important;
+        margin-right: 15px !important;
+    }
+
+    h4 {
+        margin-bottom: 0.25rem !important;
+    }
+
+    .custom-select {
+        height: 36px !important;
+    }
+
+    hr {
+        margin-top: 0.25rem !important;
+        margin-bottom: 0.25rem !important;
+    }
+
+    .form-group {
+        margin-bottom: 10px !important;
+    }
+
+    .btn {
+        padding: 0.25rem 1rem !important;
+        margin: 0.25rem 0rem !important;
+    }
+
+    .w-100 {
+        width: 80% !important;
+    }
+
+    .btn_center {
+        text-align: center !important;
+    }
+
+    .xs-pd-20-10 {
+        padding: 10px 10px !important;
+    }
+
+    .pd-20 {
+        padding: 10px !important;
+    }
+
+    .maxheight_small {
+        max-height: calc(100vh - 410px) !important;
+    }
+
+    .maxheight_large {
+        max-height: calc(100vh - 128px) !important;
+    }
+    
+    .btn_small{
+        max-width: 50%!important;
+    }
+}

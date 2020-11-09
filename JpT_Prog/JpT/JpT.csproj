@@ -79,25 +79,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DAO\CommonDAO.cs" />
-    <Compile Include="Entity\KanjiEntity.cs" />
-    <Compile Include="Entity\KotobaEntity.cs" />
+    <Compile Include="Entity\DataEntity.cs" />
     <Compile Include="Logic\MainScreenLogic.cs" />
-    <Compile Include="Logic\ViewKanjiAgainLogic.cs" />
     <Compile Include="Logic\ViewKanjiFlashcard.cs" />
-    <Compile Include="Logic\ViewKotobaAgainLogic.cs" />
-    <Compile Include="Logic\ViewKanjiNewLogic.cs" />
-    <Compile Include="Logic\ViewKotobaNewLogic.cs" />
-    <Compile Include="Logic\LearningAgain.cs" />
     <Compile Include="Model\BaseModel.cs" />
-    <Compile Include="Model\KanjiModel.cs" />
-    <Compile Include="Model\KotobaModel.cs" />
+    <Compile Include="Model\DataModel.cs" />
     <Compile Include="Model\LessonModel.cs" />
     <Compile Include="Model\MainModel.cs" />
-    <Compile Include="Model\ViewKanjiAgainModel.cs" />
     <Compile Include="Model\ViewKanjiFlashcardModel.cs" />
-    <Compile Include="Model\ViewKotobaAgainModel.cs" />
-    <Compile Include="Model\ViewKanjiNewModel.cs" />
-    <Compile Include="Model\ViewKotobaNewModel.cs" />
     <Compile Include="Resource\Messages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -154,7 +143,6 @@
     <None Include="Data\Data.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Data_Resource.xlsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

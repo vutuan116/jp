@@ -46,26 +46,15 @@ namespace JpT.Utilities
         public static readonly string BTN_CONTENT_FINISH = "Kết thúc";
 
         // DAO
-        public static readonly int KOTOBA_COLUMN_LESSON = 2;
-        public static readonly int KOTOBA_COLUMN_CONTENT = 3;
-        public static readonly int KOTOBA_COLUMN_HIRAGANA = 4;
-        public static readonly int KOTOBA_COLUMN_MEANING = 5;
-        public static readonly int KOTOBA_COLUMN_TYPE = 6;
-        public static readonly int KOTOBA_COLUMN_IS_HARD = 7;
-        public static readonly int KOTOBA_COLUMN_LOCK = 8;
-        public static readonly int KOTOBA_COLUMN_HISTORY = 9;
-        public static readonly int KOTOBA_COLUMN_OTHER_MEANING = 10;
-        public static readonly int KOTOBA_COLUMN_LAST_LEARNING = 11;
-
-        public static readonly int KANJI_COLUMN_LESSON = 2;
-        public static readonly int KANJI_COLUMN_KANJI = 3;
-        public static readonly int KANJI_COLUMN_HIRAGANA = 4;
-        public static readonly int KANJI_COLUMN_HANVIET = 5;
-        public static readonly int KANJI_COLUMN_MEANING = 6;
-        public static readonly int KANJI_COLUMN_IS_HARD = 7;
-        public static readonly int KANJI_COLUMN_LOCK = 8;
-        public static readonly int KANJI_COLUMN_HISTORY = 9;
-        public static readonly int KANJI_COLUMN_OTHER_MEANING = 10;
-        public static readonly int KANJI_COLUMN_LAST_LEARNING = 11;
+        public static readonly int COL_TYPE = 2;
+        public static readonly int COL_LEVEL = 3;
+        public static readonly int COL_LESSON = 4;
+        public static readonly int COL_KANJI = 5;
+        public static readonly int COL_HIRAGANA = 6;
+        public static readonly int COL_CNVI = 7;
+        public static readonly int COL_MEANING = 8;
+        public static readonly int COL_IS_HARD = 9;
+        public static readonly int COL_LOCK = 10;
+        public static readonly int COL_LAST_LEARN = 11;
     }
 }
